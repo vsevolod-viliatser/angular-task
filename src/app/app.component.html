@@ -1,53 +1,5 @@
-<nav>
-  <a routerLink="/">Contact List</a>
-  <button class="add-contact-btn" (click)="addNewContact()">Add Contact</button>
+<nav class="footer-nav">
+  <a routerLink="/contact/new" class="btn btn-link">Add Contact</a>
 </nav>
 
-<h1 *ngIf="isEditMode && !contact.id">Create New Contact</h1>
-<h1 *ngIf="isEditMode && contact.id">Edit Contact</h1>
-<h1 *ngIf="isViewMode">View Contact</h1>
-<h1 *ngIf="!isEditMode && !isViewMode">Contact List</h1>
-
-<!-- Search bar -->
-<input *ngIf="!isEditMode && !isViewMode" type="text" [(ngModel)]="searchTerm" placeholder="Search..." />
-
-<!-- Contact List -->
-<div *ngIf="!isEditMode && !isViewMode">
-  <ul>
-    <li *ngFor="let contact of filteredContacts()">
-      <span>{{ contact.name }} - {{ contact.phone }}</span>
-      <button (click)="viewContact(contact.id)">View</button>
-      <button (click)="editContact(contact.id)">Edit</button>
-      <button (click)="deleteContact(contact.id)">Delete</button>
-    </li>
-  </ul>
-</div>
-
-<!-- View Contact -->
-<div *ngIf="isViewMode">
-  <h2>Contact Details</h2>
-  <p>Name: {{ contact.name }}</p>
-  <p>Phone: {{ contact.phone }}</p>
-  <p>Email: {{ contact.email }}</p>
-  <p>Address: {{ contact.address }}</p>
-  <p>Birthday: {{ contact.birthday }}</p>
-  <button (click)="cancel()">Back</button>
-</div>
-
-<!-- Add or Edit Contact Form -->
-<div *ngIf="isEditMode">
-  <form (ngSubmit)="saveContact()">
-    <label>Name: <input type="text" [(ngModel)]="contact.name" name="name" required (ngModelChange)="checkValidation()" /></label>
-    <label>Phone: <input type="text" [(ngModel)]="contact.phone" name="phone" required (ngModelChange)="checkValidation()" /></label>
-    <label>Email: <input type="email" [(ngModel)]="contact.email" name="email" required (ngModelChange)="checkValidation()" /></label>
-    <label>Address: <input type="text" [(ngModel)]="contact.address" name="address" required (ngModelChange)="checkValidation()" /></label>
-    <label>Birthday: <input type="date" [(ngModel)]="contact.birthday" name="birthday" required (ngModelChange)="checkValidation()" /></label>
-    <button type="submit" [disabled]="formErrors.length > 0">Save</button>
-    <button type="button" (click)="cancel()">Cancel</button>
-  </form>
-
-  <!-- Show form validation errors -->
-  <ul *ngIf="formErrors.length > 0">
-    <li *ngFor="let error of formErrors">{{ error }}</li>
-  </ul>
-</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,11 @@
+<div *ngIf="isViewMode" class="card contact-details">
+  <div class="card-body">
+    <h5 class="card-title">Contact Details</h5>
+    <p class="card-text">Name: {{ contactService.contact.name }}</p>
+    <p class="card-text">Phone: {{ contactService.contact.phone }}</p>
+    <p class="card-text">Email: {{ contactService.contact.email }}</p>
+    <p class="card-text">Address: {{ contactService.contact.address }}</p>
+    <p class="card-text">Birthday: {{ contactService.contact.birthday }}</p>
+    <button class="btn btn-secondary" (click)="back()">Back</button>
+  </div>
+</div>
